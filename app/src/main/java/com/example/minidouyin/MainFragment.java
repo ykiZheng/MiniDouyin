@@ -9,14 +9,21 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+
 
 public class MainFragment extends BaseFragment {
     private static String TAG = "MainFragment";
 
     private CurrentLocationFragment currentLocationFragment;
     private RecommendFragment recommendFragment;
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
+
+    @BindView(R.id.vg)
+    ViewPager viewPager;
+    @BindView(R.id.tabTitle)
+    TabLayout tabTitle;
+
+    private String[] titles = new String[]{"杭州","推荐"};
 
     // TODO: Rename and change types of parameters
     private ArrayList<Fragment> fragments = new ArrayList<>();
@@ -31,20 +38,26 @@ public class MainFragment extends BaseFragment {
     @Override
     protected void init() {
         // Required empty public constructor
-        viewPager = rootView.findViewById(R.id.viewpager);
-        tabLayout = rootView.findViewById(R.id.tabLayout);
 
+        setFragments();
+    }
+
+    private void setFragments(){
         currentLocationFragment = new CurrentLocationFragment();
         recommendFragment = new RecommendFragment();
+
         fragments.add(currentLocationFragment);
         fragments.add(recommendFragment);
 
+        tabTitle.addTab(tabTitle.newTab().setText("杭州"));
+        tabTitle.addTab(tabTitle.newTab().setText("推荐"));
 
         pagerAdapter = new CommPagerAdapter(getChildFragmentManager(), fragments, new String[]{"杭州", "推荐"});
         viewPager.setAdapter(pagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setText("杭州");
-        tabLayout.getTabAt(1).setText("推荐");
+        tabTitle.setupWithViewPager(viewPager);
+        tabTitle.getTabAt(0).select();
+        tabTitle.getTabAt(1).select();
+
     }
 
 }

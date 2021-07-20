@@ -6,13 +6,17 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.minidouyin.BaseActivity;
 import com.example.minidouyin.CommPagerAdapter;
 import com.example.minidouyin.MainFragment;
+import com.example.minidouyin.PersonalHomeFragment;
 import com.example.minidouyin.R;
 
 import java.util.ArrayList;
 
-public class MainPageActivity extends BaseActivity {
+import butterknife.BindView;
 
-    private ViewPager viewPager;
+public class MainPageActivity extends BaseActivity {
+    @BindView(R.id.vg)
+    ViewPager viewPager;
+
     private CommPagerAdapter pageAdapter;
     private ArrayList<Fragment> fragments = new ArrayList<>();
 
@@ -24,8 +28,8 @@ public class MainPageActivity extends BaseActivity {
     @Override
     protected void init() {
 
-        viewPager = findViewById(R.id.vg);
         fragments.add(new MainFragment());
+        fragments.add(new PersonalHomeFragment());
         pageAdapter = new CommPagerAdapter(getSupportFragmentManager(), fragments,new String[]{"",""});
         viewPager.setAdapter(pageAdapter);
     }

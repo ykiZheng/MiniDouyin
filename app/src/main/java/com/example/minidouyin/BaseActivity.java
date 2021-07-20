@@ -27,6 +27,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         unbinder = ButterKnife.bind(this);
         init();
+        setFullScreen(true);
+        hideActionBar();
     }
 
     protected abstract int setLayoutId();
@@ -55,6 +57,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
+     *
+     */
+    protected void hideActionBar(){
+        if (getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
+    }
+    /**
      * Activity退出动画
      */
     protected void setExitAnimation(int animId) {
@@ -64,8 +74,30 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 全屏
      */
-    protected void setFullScreen() {
-        ImmersionBar.with(this).init();
+    protected void setFullScreen(boolean enable) {
+        if(enable) {
+            ImmersionBar.with(this).init();
+            WindowManager.LayoutParams lp = getWindow().getAttributes();
+
+            lp.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+            getWindow().setAttributes(lp);
+
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+        }
+        else{
+            WindowManager.LayoutParams lp = getWindow().getAttributes();
+
+            lp.flags |= WindowManager.LayoutParams.FLAG_FULLSCREEN;
+
+            getWindow().setAttributes(lp);
+
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+
+        }
+
     }
 
     @Override

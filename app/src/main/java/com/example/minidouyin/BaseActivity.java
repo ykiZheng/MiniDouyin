@@ -27,8 +27,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         unbinder = ButterKnife.bind(this);
         init();
-        setFullScreen(true);
+        //setFullScreen(true);
         hideActionBar();
+        hideStatusBar();
     }
 
     protected abstract int setLayoutId();
@@ -99,6 +100,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
     }
+
 
     @Override
     protected void onDestroy() {

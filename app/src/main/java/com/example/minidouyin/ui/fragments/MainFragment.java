@@ -1,10 +1,13 @@
-package com.example.minidouyin;
+package com.example.minidouyin.ui.fragments;
 
 import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.minidouyin.BaseFragment;
+import com.example.minidouyin.R;
+import com.example.minidouyin.core.recycler.adapter.CommPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -49,14 +52,12 @@ public class MainFragment extends BaseFragment {
         fragments.add(currentLocationFragment);
         fragments.add(recommendFragment);
 
-        tabTitle.addTab(tabTitle.newTab().setText("杭州"));
-        tabTitle.addTab(tabTitle.newTab().setText("推荐"));
 
         pagerAdapter = new CommPagerAdapter(getChildFragmentManager(), fragments, new String[]{"杭州", "推荐"});
         viewPager.setAdapter(pagerAdapter);
         tabTitle.setupWithViewPager(viewPager);
-        tabTitle.getTabAt(0).select();
-        tabTitle.getTabAt(1).select();
+        tabTitle.getTabAt(0).setText("杭州");
+        tabTitle.getTabAt(1).setText("推荐");
 
     }
 

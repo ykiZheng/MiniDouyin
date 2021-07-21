@@ -1,4 +1,4 @@
-package com.example.minidouyin.core.recycler;
+package com.example.minidouyin.core.recycler.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minidouyin.R;
+import com.example.minidouyin.core.recycler.TestData;
 
 import java.util.List;
 
@@ -96,7 +97,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHo
             titleView = itemView.findViewById(R.id.tv_title);
         }
         public void onBind(int position, TestData data){
-            titleView.setText(data.title);
+            titleView.setText(data.getTitle());
         }
 
 

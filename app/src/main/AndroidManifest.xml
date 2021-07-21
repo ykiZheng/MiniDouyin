@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.CAMERA"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,8 +18,7 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login"></activity>
-        <activity android:name=".newtwork.model.MainPageActivity" />
-        <activity android:name=".BaseActivity" />
+        <activity android:name=".RecyclerViewActivity$MainPageActivity" />
         <activity android:name=".selfInfoActivity" />
         <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".MainActivity">

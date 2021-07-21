@@ -1,4 +1,4 @@
-package com.example.minidouyin;
+package com.example.minidouyin.data;
 
 public class Constants {
     public static final String BASE_URL = "https://api-android-camp.bytedance.com/zju/invoke";

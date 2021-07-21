@@ -1,4 +1,7 @@
-package com.example.minidouyin;
+package com.example.minidouyin.ui.fragments;
+
+import com.example.minidouyin.BaseFragment;
+import com.example.minidouyin.R;
 
 public class CurrentLocationFragment extends BaseFragment {
 

@@ -7,7 +7,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.minidouyin.newtwork.model.MainPageActivity;
 import com.example.minidouyin.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{

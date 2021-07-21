@@ -58,6 +58,7 @@ public class MainFragment extends BaseFragment {
         tabTitle.setupWithViewPager(viewPager);
         tabTitle.getTabAt(0).setText("杭州");
         tabTitle.getTabAt(1).setText("推荐");
+        tabTitle.getTabAt(1).select();
 
     }
 

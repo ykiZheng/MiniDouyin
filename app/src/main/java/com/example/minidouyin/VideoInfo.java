@@ -2,19 +2,19 @@ package com.example.minidouyin;
 
 public class VideoInfo {
     private String name;
-    private int ImageId;
+    private String videoUrl;
 
-    public VideoInfo(String name,int ImageId){
+    public VideoInfo(String name,String videoUrl){
         this.name = name;
-        this.ImageId = ImageId;
+        this.videoUrl = videoUrl;
     }
 
-    public int getImageId() {
-        return ImageId;
+    public String getVideoUrl() {
+        return videoUrl;
     }
 
-    public void setImageId(int imageId) {
-        ImageId = imageId;
+    public void setVideoUrl(String videoUrl) {
+        videoUrl = videoUrl;
     }
 
     public String getName() {

@@ -4,57 +4,46 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minidouyin.R;
-import com.example.minidouyin.VideoInfo;
+import com.example.minidouyin.base.BaseRvAdapter;
+import com.example.minidouyin.base.MyBaseViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.HomeViewHolder> {
+public class VideoAdapter extends BaseRvAdapter<String, VideoAdapter.VideoViewHolder> {
 
-    private Context mContext;
-    private List<VideoInfo> homeList = new ArrayList<>();
 
-    public VideoAdapter(Context context, List<VideoInfo> datas) {
-        this.mContext = context;
-        this.homeList = homeList;
+    public VideoAdapter(Context context, List<String> datas) {
+
+        super(context,datas);
     }
     //建立列表元件
     @NonNull
     @Override
-    public VideoAdapter.HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.video_item,null);
-        return new VideoAdapter.HomeViewHolder(view,this);
+    public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video,parent,false);
+        return new VideoViewHolder(view);
     }
+
 
     @Override
-    public void onBindViewHolder(@NonNull VideoAdapter.HomeViewHolder holder, int position) {
-        holder.imageIdIv.setImageResource(homeList.get(position).getImageId());
-        holder.nameTv.setText(homeList.get(position).getName());
-    }
+    protected void onBindData(VideoViewHolder holder, String data, int position) {
 
-    //返回列表資料總數
-    @Override
-    public int getItemCount() {
-        return homeList.size();
+        String bgVideoPath = "android.resource://" + context.getPackageName() + "/" +R.raw.video0;
+        holder.videoView.setVideoPath(bgVideoPath);
+        holder.videoView.start();
     }
 
 
-    public class HomeViewHolder extends RecyclerView.ViewHolder{
-        TextView nameTv;
-        ImageView imageIdIv;
-        private RecyclerView.Adapter adapter;
-        public HomeViewHolder(@NonNull View itemView,RecyclerView.Adapter adapter) {
+    public class VideoViewHolder extends MyBaseViewHolder {
+        VideoView videoView;
+        public VideoViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.nameTv = itemView.findViewById(R.id.home_item_text);
-            this.imageIdIv = itemView.findViewById(R.id.home_item_mage);
-            this.adapter = adapter;
+            videoView = itemView.findViewById(R.id.videoview);
         }
     }
 }

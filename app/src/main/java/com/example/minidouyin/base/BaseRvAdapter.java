@@ -7,14 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public abstract class MyBaseAdapter<T,VH extends MyBaseViewHolder>extends RecyclerView.Adapter<VH> {
-
+public abstract class BaseRvAdapter<T,VH extends MyBaseViewHolder> extends RecyclerView.Adapter<VH> {
     protected Context context;
     protected List<T> mDatas;
     protected OnItemClickListener onItemClickListener;
     protected OnItemLongClickListener onItemLongClickListener;
 
-    public MyBaseAdapter(Context context, List<T> datas) {
+    public BaseRvAdapter(Context context, List<T> datas) {
         this.context = context;
         mDatas = datas;
     }

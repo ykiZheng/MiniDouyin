@@ -3,23 +3,22 @@ package com.example.minidouyin.ui.fragments;
 import android.graphics.Rect;
 import android.view.View;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.minidouyin.BaseFragment;
 import com.example.minidouyin.R;
-import com.example.minidouyin.VideoInfo;
 import com.example.minidouyin.core.recycler.adapter.VideoAdapter;
 
 import java.util.ArrayList;
 
 public class RecommendFragment extends BaseFragment {
-//    @BindView(R.id.recyclerview)
+
     private RecyclerView recyclerView;
-    private ArrayList<VideoInfo> datas = new ArrayList<>();
+    private ArrayList<String> datas = new ArrayList<>();
     private VideoAdapter adapter;
 
-    private String url; //当前视频url
 
     @Override
     protected int setLayoutId() {
@@ -29,25 +28,26 @@ public class RecommendFragment extends BaseFragment {
     @Override
     protected void init() {
         recyclerView = rootView.findViewById(R.id.recyclerview);
-        loadData();
+
         adapter = new VideoAdapter(this.getActivity(),datas);
-
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
-
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         //创建分割线对象
-        recyclerView.addItemDecoration(new MyDecoration());
+//        recyclerView.addItemDecoration(new MyDecoration());
 
-        recyclerView.setAdapter(adapter);
+        PagerSnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
+
+        loadData();
 
     }
 
     private void loadData(){
-        String[] names = new String[]{"車位查詢","車位預定","與車間距","防盜警報","停車時長","車位查詢","車位預定","與車間距","防盜警報","停車時長"};
-        int[] ImageId = new int[]{R.drawable.car1,R.drawable.car2,R.drawable.car3,R.drawable.car4,R.drawable.car5,R.drawable.car1,R.drawable.car2,R.drawable.car3,R.drawable.car4,R.drawable.car5};
-        for(int i = 0 ;i < names.length ; i++){
-            this.datas.add(new VideoInfo(names[i],ImageId[i]));
+        for (int i = 0; i < 3; i++) {
+            datas.add("");
         }
+        adapter.notifyDataSetChanged();
     }
 
     //分割线的类

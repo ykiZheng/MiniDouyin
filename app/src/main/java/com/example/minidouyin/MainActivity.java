@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.btn2:
-                Intent intent2 = new Intent(this, MainPageActivity.class);
+                Intent intent2 = new Intent(this, RecyclerViewActivity.MainPageActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.btn3:

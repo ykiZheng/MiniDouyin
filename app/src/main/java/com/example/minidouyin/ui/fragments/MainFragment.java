@@ -1,11 +1,15 @@
 package com.example.minidouyin.ui.fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.minidouyin.BaseFragment;
+import com.example.minidouyin.CustomCameraActivity;
 import com.example.minidouyin.R;
 import com.example.minidouyin.core.recycler.adapter.CommPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -15,7 +19,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 
 
-public class MainFragment extends BaseFragment {
+public class MainFragment extends BaseFragment{
     private static String TAG = "MainFragment";
 
     private CurrentLocationFragment currentLocationFragment;
@@ -25,6 +29,8 @@ public class MainFragment extends BaseFragment {
     ViewPager viewPager;
     @BindView(R.id.tabTitle)
     TabLayout tabTitle;
+    @BindView(R.id.ig_record)
+    ImageView ig_record;
 
     private String[] titles = new String[]{"杭州","推荐"};
 
@@ -41,6 +47,12 @@ public class MainFragment extends BaseFragment {
     @Override
     protected void init() {
         // Required empty public constructor
+
+        ig_record.setOnClickListener(v -> {
+            Context mContext = rootView.getContext();
+            Intent intent = new Intent(mContext, CustomCameraActivity.class);
+            mContext.startActivity(intent);
+        });
 
         setFragments();
     }
@@ -61,5 +73,6 @@ public class MainFragment extends BaseFragment {
         tabTitle.getTabAt(1).select();
 
     }
+
 
 }

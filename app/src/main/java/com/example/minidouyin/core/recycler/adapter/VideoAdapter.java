@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -33,8 +34,9 @@ public class VideoAdapter extends BaseRvAdapter<String, VideoAdapter.VideoViewHo
     @Override
     protected void onBindData(VideoViewHolder holder, String data, int position) {
 
-        String bgVideoPath = "android.resource://" + context.getPackageName() + "/" +R.raw.video0;
+        String bgVideoPath = "android.resource://" + context.getPackageName() + "/" +R.raw.video1;
         holder.videoView.setVideoPath(bgVideoPath);
+        holder.videoView.setMediaController(new MediaController(context));
         holder.videoView.start();
     }
 

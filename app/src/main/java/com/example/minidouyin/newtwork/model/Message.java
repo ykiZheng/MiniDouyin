@@ -4,16 +4,23 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 
 public class Message {
-    // 视频标题
+
+    @SerializedName("_id")
+    private String Id;
+    // 学号
     @SerializedName("student_id")
     private String studentId;
-    //用户名
+    //发布者的用户名
     @SerializedName("user_name")
     private String userName;
-    //视频
+    //附加信息
+    @SerializedName("extra_value")
+    private String extraValue;
+
+    //视频源文件地址
     @SerializedName("video_url")
     private String videoUrl;
-    //封面
+    //封面图片地址
     @SerializedName("image_url")
     private String imageUrl;
     @SerializedName("image_w")
@@ -21,9 +28,7 @@ public class Message {
     @SerializedName("image_h")
     private int imageH;
 
-    @SerializedName("_id")
-    private String Id;
-
+    //
     @SerializedName("createdAt")
     private Date createdAt;
     @SerializedName("updatedAt")
@@ -41,6 +46,13 @@ public class Message {
     }
     public String getStudentId() {
         return studentId;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public String getUserName() {
+        return userName;
     }
 
     public void setVideoUrl(String videoUrl) {

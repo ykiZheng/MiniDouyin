@@ -19,6 +19,7 @@
     <RelativeLayout
         android:id="@+id/relativelayout"
         android:layout_width="match_parent"
+        android:padding="10dp"
         android:layout_height="48dp"
         android:orientation="horizontal">
 
@@ -36,7 +37,7 @@
         </com.google.android.material.tabs.TabLayout>
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ig_search"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_centerVertical="true"
@@ -46,6 +47,19 @@
             android:src="@android:drawable/ic_menu_search"
             android:layout_alignParentEnd="true" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+    <ImageView
+        android:id="@+id/ig_record"
+        android:layout_width="50dp"
+        android:layout_height="35dp"
+        android:layout_centerInParent="true"
+        android:src="@android:drawable/ic_menu_search"
+         />
+</RelativeLayout>
 
 
 

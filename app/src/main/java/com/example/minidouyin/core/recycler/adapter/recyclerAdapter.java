@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.minidouyin.Dataset.TestData;
 import com.example.minidouyin.R;
-import com.example.minidouyin.core.recycler.TestData;
 
 import java.util.List;
 

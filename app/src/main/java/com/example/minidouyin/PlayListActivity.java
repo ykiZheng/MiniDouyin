@@ -1,6 +1,7 @@
 package com.example.minidouyin;
 
-import com.example.minidouyin.ui.fragments.RecommendFragment;
+
+import com.example.minidouyin.base.BaseActivity;
 
 public class PlayListActivity extends BaseActivity {
 

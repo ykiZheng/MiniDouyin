@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFFFF"
+    tools:context=".VideoActivity">
+
+    <!--<com.airbnb.lottie.LottieAnimationView-->
+    <!--android:id="@+id/anim"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:layout_gravity="center"-->
+    <!--app:lottie_autoPlay="true"-->
+    <!--app:lottie_loop="true"-->
+    <!--app:lottie_rawRes="@raw/" />-->
+
+    <VideoView
+        android:id="@+id/video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/materialcolorpicker__red"/>
+
+    <ImageView
+        android:id="@+id/gif_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#00FFFFFF"/>
+
+    <!--store-->
+    <ImageButton
+        android:id="@+id/star_empty"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="200dp"
+        android:scaleType="fitCenter"
+        android:background="#00FFFFFF"
+        android:alpha="0.3"
+        android:src="@drawable/star_empty" />
+
+    <ImageView
+        android:id="@+id/star_mov"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="200dp"
+        android:scaleType="fitCenter"
+        android:alpha="0"
+        android:background="#00FFFFFF"
+        android:src="@drawable/star_mov" />
+
+    <ImageButton
+        android:id="@+id/star_full"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="200dp"
+        android:scaleType="fitCenter"
+        android:background="#00FFFFFF"
+        android:src="@drawable/star_full"
+        android:alpha="0"/>
+
+    <!--like-->
+    <ImageButton
+        android:id="@+id/like_empty"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="250dp"
+        android:scaleType="fitCenter"
+        android:background="#00FFFFFF"
+        android:alpha="0.3"
+        android:src="@drawable/like_empty" />
+
+    <ImageButton
+        android:id="@+id/like_full"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="250dp"
+        android:scaleType="fitCenter"
+        android:background="#00FFFFFF"
+        android:alpha="0"
+        android:src="@drawable/like_full" />
+
+
+</FrameLayout>

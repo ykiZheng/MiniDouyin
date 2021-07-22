@@ -15,14 +15,16 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.minidouyin.R;
+import com.example.minidouyin.UploadActivity;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.io.File;
 import java.io.IOException;
 
-import static com.example.minidouyin.Util.SYSTEM_TYPE_VIDEO;
-import static com.example.minidouyin.Util.getOutputMediaFile;
+import static com.example.minidouyin.Utils.Util.SYSTEM_TYPE_VIDEO;
+import static com.example.minidouyin.Utils.Util.getOutputMediaFile;
 
 public class CustomCameraActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
@@ -31,12 +33,12 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
     private Camera mCamera;
     private MediaRecorder mMediaRecorder;
     private SurfaceHolder mHolder;
-
     private Button mRecordButton;
     private Button mConfirmButton;
     private boolean isRecording = false;
 
     private File video_file;
+
 
     public static void startUI(Context context) {
         Intent intent = new Intent(context, CustomCameraActivity.class);
@@ -56,6 +58,9 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
         mHolder = mSurfaceView.getHolder();
         initCamera();
         mHolder.addCallback(this);
+
+
+
     }
 
     @Override
@@ -120,7 +125,7 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
     }
 
     public void cancel(View view){
-        finish();
+        this.finish();
     }
 
 
@@ -130,6 +135,7 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
             if (prepareVideoRecorder()) {
                 mRecordButton.setText("暂停");
                 mMediaRecorder.start();
+
             }
         } else {
             // 停止录制
@@ -138,6 +144,7 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
             mMediaRecorder.setOnErrorListener(null);
             mMediaRecorder.setOnInfoListener(null);
             mMediaRecorder.setPreviewDisplay(null);
+
             try {
                 mMediaRecorder.stop();
             } catch (Exception e) {
@@ -215,6 +222,5 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
             getSupportActionBar().hide();
         }
     }
-
 
 }

@@ -15,4 +15,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="record">录制</string>
     <string name="btn_cancel">返回</string>
+    <string name="str_return">返回</string>
+    <string name="str_submit">提交</string>
 </resources>

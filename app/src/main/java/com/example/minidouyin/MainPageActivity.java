@@ -1,15 +1,21 @@
 package com.example.minidouyin;
 
+import android.content.Intent;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.minidouyin.API.Constants;
+import com.example.minidouyin.base.BaseActivity;
 import com.example.minidouyin.core.recycler.adapter.CommPagerAdapter;
-import com.example.minidouyin.ui.fragments.MainFragment;
-import com.example.minidouyin.ui.fragments.PersonalHomeFragment;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
+
+import static com.example.minidouyin.CustomCameraActivity.REQUEST_UPLOAD;
+import static com.example.minidouyin.MainActivity.LOGIN_ANONIMAL_CODE;
 
 public class MainPageActivity extends BaseActivity {
     @BindView(R.id.vg)
@@ -40,8 +46,18 @@ public class MainPageActivity extends BaseActivity {
 //        if(requestCode == REQUEST_UPLOAD){
 //            ;String returnPath = data.getStringExtra("path");
 //            if(returnPath != null){
-//                postVideo(loginName, loginID,returnPath);
+//                fragments.remove(1);
+//                fragments.remove(0);
+//                init();
+//
 //            }
+//        }
+//        else if(requestCode == LOGIN_ANONIMAL_CODE){
+//            Constants.studentName = null;
+//            Constants.stduentID = null;
+//            fragments.remove(1);
+//            fragments.remove(0);
+//            init();
 //        }
 //    }
 

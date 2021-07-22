@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".UploadActivity">
+    tools:context=".activity.UploadActivity">
 
     <VideoView
         android:id="@+id/videoView"
@@ -37,7 +37,7 @@
             android:layout_marginLeft="50dp"
             android:layout_marginTop="30dp"
             android:onClick="record"
-            android:text="提交"
+            android:text="@string/str_submit"
             android:textSize="30sp" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginRight="50dp"
             android:onClick="cancel"
-            android:text="返回"
+            android:text="@string/str_return"
             android:textSize="30sp" />
     </LinearLayout>
 

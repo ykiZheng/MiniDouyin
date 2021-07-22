@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.MainFragment"
+    tools:context=".MainFragment"
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
@@ -57,7 +57,7 @@
         android:layout_width="50dp"
         android:layout_height="35dp"
         android:layout_centerInParent="true"
-        android:src="@android:drawable/ic_menu_search"
+        android:src="@drawable/snap"
          />
 </RelativeLayout>
 

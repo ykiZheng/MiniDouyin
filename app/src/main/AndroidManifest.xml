@@ -20,16 +20,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PlayListActivity"></activity>
+        <activity android:name=".LoginActivity"
+            android:launchMode="singleInstance"></activity>
+        <activity android:name=".RecommendActivity" />
+        <activity android:name=".PlayListActivity" />
         <activity android:name=".UploadActivity" />
+        <activity android:name=".VideoActivity" />
         <activity
             android:name=".CustomCameraActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
         <activity android:name=".MainPageActivity" />
-        <activity android:name=".selfInfoActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

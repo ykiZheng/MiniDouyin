@@ -12,8 +12,12 @@ import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.minidouyin.data.Constants;
-import com.example.minidouyin.newtwork.model.UploadResponse;
+import com.example.minidouyin.API.Constants;
+import com.example.minidouyin.API.IApi;
+import com.example.minidouyin.API.UploadResponse;
+import com.example.minidouyin.Utils.ResourceUtils;
+import com.example.minidouyin.base.BaseActivity;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,8 +33,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.minidouyin.Util.SYSTEM_TYPE_IMAGE;
-import static com.example.minidouyin.Util.getOutputMediaFile;
+import static com.example.minidouyin.Utils.Util.SYSTEM_TYPE_IMAGE;
+import static com.example.minidouyin.Utils.Util.getOutputMediaFile;
 
 public class UploadActivity extends BaseActivity {
 
@@ -79,6 +83,7 @@ public class UploadActivity extends BaseActivity {
 
         btn_submit.setText("上传中");
         btn_submit.setEnabled(false);
+        btn_cancel.setEnabled(false);
 
         mview.setDrawingCacheEnabled(true);
         Bitmap bitmap = Bitmap.createBitmap(mview.getDrawingCache());
@@ -100,6 +105,7 @@ public class UploadActivity extends BaseActivity {
                     Toast.makeText(UploadActivity.this, "upload success", Toast.LENGTH_SHORT).show();
                     btn_submit.setText("上传");
                     btn_submit.setEnabled(true);
+                    btn_cancel.setEnabled(true);
                 });
             }
 
@@ -109,6 +115,7 @@ public class UploadActivity extends BaseActivity {
                     Toast.makeText(UploadActivity.this, "upload fail", Toast.LENGTH_SHORT).show();
                     btn_submit.setText("上传");
                     btn_submit.setEnabled(true);
+                    btn_cancel.setEnabled(true);
                 });
             }
         });
@@ -123,7 +130,7 @@ public class UploadActivity extends BaseActivity {
 //                MediaScannerConnection.scanFile(this, new String[]{mPath}, null, null);
 //            }
 //        }
-        finish();
+        this.finish();
     }
 
     public void saveBitmap(Bitmap bm) {

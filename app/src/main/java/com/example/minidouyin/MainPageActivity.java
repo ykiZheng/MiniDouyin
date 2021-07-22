@@ -1,5 +1,8 @@
 package com.example.minidouyin;
 
+import android.content.Intent;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -10,6 +13,8 @@ import com.example.minidouyin.ui.fragments.PersonalHomeFragment;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+
+import static com.example.minidouyin.CustomCameraActivity.REQUEST_UPLOAD;
 
 public class MainPageActivity extends BaseActivity {
     @BindView(R.id.vg)
@@ -30,5 +35,14 @@ public class MainPageActivity extends BaseActivity {
         fragments.add(new PersonalHomeFragment());
         pageAdapter = new CommPagerAdapter(getSupportFragmentManager(), fragments,new String[]{"",""});
         viewPager.setAdapter(pageAdapter);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_UPLOAD){
+            ;String returnPath = data.getStringExtra("path");
+        }
     }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_by_theme"
     tools:context=".ui.fragments.PersonalHomeFragment">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -20,16 +21,12 @@
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
                 android:background="@color/transparent"
-                app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMarginEnd="64dp"
-                app:expandedTitleMarginStart="48dp"
+                app:contentScrim="@color/color_by_theme"
                 app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
                 app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
                 app:toolbarId="@+id/toolbar">
-
-
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -45,37 +42,50 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:scaleType="centerCrop"
+                            android:background="@drawable/car1"
                             android:padding="8dp"
                             android:layout_marginLeft="10dp"
                             android:layout_centerVertical="true"/>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+
+
+
+                        <TextView
+                            android:id="@+id/tvTitle"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="12dp"
-                            android:orientation="vertical"
-                            android:background="@color/black">
+                            android:textColor="@color/white"
+                            tools:text="账号名字"
+                            android:textSize="18dp"
+                            tools:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                             />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:text="昵称" />
+                        <TextView
+                            android:id="@+id/tvFocus"
+                            android:layout_width="60dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/car2"
+                            android:text="关注"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/iv_more"
+                            android:layout_marginRight="10dp"
+                            android:visibility="gone"
+                            android:gravity="center"/>
+                        <TextView
+                            android:id="@+id/iv_more"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            tools:textColor="@color/white"
+                            tools:text="简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介"
+                            android:gravity="center"
+                            />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="8dp"
-                                android:text="抖音号" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/white"
-                                android:textSize="14dp"
-                                android:text="个人简介" />
-                        </LinearLayout>
                     </RelativeLayout>
                 </androidx.appcompat.widget.Toolbar>
 
@@ -85,13 +95,14 @@
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_alignParentBottom="true"
                 android:background="?attr/colorPrimary"
-                app:tabIndicatorColor="@color/colorAccent"
+                app:tabIndicatorColor="#FF9F00"
                 app:tabIndicatorHeight="4dp"
-                app:tabSelectedTextColor="#000"
-                app:tabTextColor="#fff" />
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="#CCCCCC"
+                />
 
         </com.google.android.material.appbar.AppBarLayout>
 

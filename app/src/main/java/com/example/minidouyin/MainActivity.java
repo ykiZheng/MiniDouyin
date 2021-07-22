@@ -66,11 +66,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v){
         switch(v.getId()){
             case R.id.btn1:
-                Intent intent = new Intent(this, RecyclerViewActivity.class);
-                startActivity(intent);
+
                 break;
             case R.id.btn2:
-                Intent intent2 = new Intent(this, RecyclerViewActivity.MainPageActivity.class);
+                Intent intent2 = new Intent(this, MainPageActivity.class);
                 startActivity(intent2);
                 break;
             case R.id.btn3:

@@ -60,11 +60,7 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHo
         return mList != null ? mList.size() : 0;
     }
 
-    public interface IOnItemClickListener {
 
-        void onItemCLick(int position, TestData data);
-
-    }
 
     public void setOnItemClickListen(IOnItemClickListener listener){
         mItemClickListener = listener;
@@ -79,10 +75,9 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.ViewHo
         }
     }
 
-
-//    public void setOnRecyclerTouchListener(OnRecyclerTouchListener onRecyclerTouchListener) {
-//        this.mOnRecyclerTouchListener = onRecyclerTouchListener;
-//    }
+    public interface IOnItemClickListener {
+        public void onItemCLick(int position, TestData data) ;
+    }
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder  {

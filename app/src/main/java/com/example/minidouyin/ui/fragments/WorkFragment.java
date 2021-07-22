@@ -1,14 +1,18 @@
 package com.example.minidouyin.ui.fragments;
 
+import android.content.Intent;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minidouyin.BaseFragment;
+import com.example.minidouyin.PlayListActivity;
 import com.example.minidouyin.R;
+import com.example.minidouyin.core.recycler.TestData;
 import com.example.minidouyin.core.recycler.TestDataSet;
 import com.example.minidouyin.core.recycler.adapter.recyclerAdapter;
 
-public class WorkFragment extends BaseFragment {
+public class WorkFragment extends BaseFragment implements recyclerAdapter.IOnItemClickListener {
 
     private RecyclerView recyclerView;
     private recyclerAdapter mAdapter;
@@ -27,7 +31,7 @@ public class WorkFragment extends BaseFragment {
         //创建Adapter
         mAdapter = new recyclerAdapter(TestDataSet.getData());
         //设置Adapter每个item的点击事件
-        //mAdapter.setOnItemClickListen((recyclerAdapter.IOnItemClickListener) this);
+        mAdapter.setOnItemClickListen((recyclerAdapter.IOnItemClickListener) this);
         //设置Adapter
         recyclerView.setAdapter(mAdapter);
 
@@ -41,6 +45,11 @@ public class WorkFragment extends BaseFragment {
 //        }
 //        workAdapter.notifyDataSetChanged();
 //    }
+
+
+    public void onItemCLick(int position, TestData data) {
+        getContext().startActivity(new Intent(getContext(), PlayListActivity.class));
+    }
 
 
 }

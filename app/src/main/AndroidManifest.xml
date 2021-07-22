@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -19,14 +20,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomCameraActivity"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".PlayListActivity"></activity>
+        <activity android:name=".UploadActivity" />
+        <activity
+            android:name=".CustomCameraActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".RecyclerViewActivity$MainPageActivity" />
+        <activity android:name=".MainPageActivity" />
         <activity android:name=".selfInfoActivity" />
-        <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

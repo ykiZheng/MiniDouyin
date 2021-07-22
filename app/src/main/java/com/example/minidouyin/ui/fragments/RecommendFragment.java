@@ -2,6 +2,7 @@ package com.example.minidouyin.ui.fragments;
 
 import android.graphics.Rect;
 import android.view.View;
+import android.widget.VideoView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -17,6 +18,7 @@ public class RecommendFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
     private ArrayList<String> datas = new ArrayList<>();
+    private VideoView videoView;
     private VideoAdapter adapter;
 
 
@@ -28,6 +30,8 @@ public class RecommendFragment extends BaseFragment {
     @Override
     protected void init() {
         recyclerView = rootView.findViewById(R.id.recyclerview);
+
+        videoView = new VideoView(getActivity());
 
         adapter = new VideoAdapter(this.getActivity(),datas);
         recyclerView.setAdapter(adapter);
@@ -58,6 +62,19 @@ public class RecommendFragment extends BaseFragment {
             int gap = getResources().getDimensionPixelSize(R.dimen.fab_margin);//5dp
             outRect.set(gap,gap,gap,gap);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        videoView.pause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        videoView.stopPlayback();
     }
 
 }

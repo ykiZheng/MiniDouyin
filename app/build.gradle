@@ -58,6 +58,11 @@ dependencies {
 
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
 
+    // RxAndroid
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    // RxJava
+    implementation 'io.reactivex:rxjava:1.2.4'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

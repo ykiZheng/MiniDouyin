@@ -7,7 +7,4 @@ public class UploadResponse {
     public Message message;
     @SerializedName("success")
     public boolean success;
-
-    @SerializedName("error")
-    public String error;
 }

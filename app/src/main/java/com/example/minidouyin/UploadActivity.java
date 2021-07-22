@@ -1,7 +1,6 @@
 package com.example.minidouyin;
 
 import android.graphics.Bitmap;
-import android.media.MediaMetadataRetriever;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -11,6 +10,8 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.example.minidouyin.newtwork.model.UploadResponse;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,9 +19,12 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UploadActivity extends BaseActivity {
 
@@ -48,8 +52,8 @@ public class UploadActivity extends BaseActivity {
 
         mVideoView.setVideoPath(mPath);
         mVideoView.start();
-        Bitmap bitmapSelectedImage = getVideoThumb(mPath);
-        mImagePath = bitmap2File(bitmapSelectedImage,"image");
+
+
 
         mVideoView.setVideoPath(mPath);
         mVideoView.setMediaController(new MediaController(this));
@@ -79,30 +83,47 @@ public class UploadActivity extends BaseActivity {
 
     private void submit(){
 
-
-        Uri mImageUri = Uri.parse(mImagePath);
-        byte[] coverImageData = readDataFromUri(mImageUri);
-        if (coverImageData == null || coverImageData.length == 0) {
-            Toast.makeText(this, "封面不存在", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-//        MultipartBody.Part titlePart = MultipartBody.Part.createFormData("toitle, to);
-//        MultipartBody.Part contentPart = MultipartBody.Part.createFormData("content", content);
-        MultipartBody.Part coverPart = MultipartBody.Part.createFormData(
-                "image",
-                "cover.png",
-                RequestBody.create(MediaType.parse("multipart/form-data"),
-                        coverImageData)
-        );
-
-        MultipartBody.Part videoPart = MultipartBody.Part.createFormData(
-                "video",  "video.mp4",
-                RequestBody.create(MediaType.parse("multipart/form-data") ,
-                        mPath)
-        );
+        btn_submit.setText("上传中");
+        btn_submit.setEnabled(false);
 
 
+        saveBitmap(bitmap);
+
+
+        MultipartBody.Part coverImage = getMultipartFromUri("cover_image", mSelectedImage);
+        MultipartBody.Part video = getMultipartFromUri("video", videoUri);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://test.androidcamp.bytedance.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        retrofit.create(IApi.class).submitMessage(studentId, "cat", coverImage, video).enqueue(new Callback<UploadResponse>() {
+            @Override
+            public void onResponse(Call<UploadResponse> call, Response<UploadResponse> response) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(UploadActivity.this, "upload success", Toast.LENGTH_SHORT).show();
+                        btn_submit.setText("上传");
+                        btn_submit.setEnabled(true);
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<UploadResponse> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(UploadActivity.this, "upload fail", Toast.LENGTH_SHORT).show();
+                        btn_submit.setText("上传");
+                        btn_submit.setEnabled(true);
+                    }
+                });
+            }
+        });
+
+        this.finish();
 
     }
 
@@ -116,14 +137,7 @@ public class UploadActivity extends BaseActivity {
         finish();
     }
 
-    private static Bitmap getVideoThumb(String path) {
-        MediaMetadataRetriever media = new MediaMetadataRetriever();
-        File file=new File(path);
-        media.setDataSource(file.getAbsolutePath());
-        Bitmap firstFrame = media.getFrameAtTime();
 
-        return  firstFrame;
-    }
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;

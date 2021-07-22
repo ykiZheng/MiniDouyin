@@ -1,8 +1,5 @@
 package com.example.minidouyin;
 
-import android.content.Intent;
-
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -14,14 +11,14 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 
-import static com.example.minidouyin.CustomCameraActivity.REQUEST_UPLOAD;
-
 public class MainPageActivity extends BaseActivity {
     @BindView(R.id.vg)
     ViewPager viewPager;
 
     private CommPagerAdapter pageAdapter;
     private ArrayList<Fragment> fragments = new ArrayList<>();
+    public String studentName = "hahaha";
+    public String stduentID = "12345";
 
     @Override
     protected int setLayoutId() {
@@ -38,11 +35,15 @@ public class MainPageActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_UPLOAD){
-            ;String returnPath = data.getStringExtra("path");
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode == REQUEST_UPLOAD){
+//            ;String returnPath = data.getStringExtra("path");
+//            if(returnPath != null){
+//                postVideo(loginName, loginID,returnPath);
+//            }
+//        }
+//    }
+
 }

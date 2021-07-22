@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.minidouyin.BaseFragment;
 import com.example.minidouyin.CustomCameraActivity;
 import com.example.minidouyin.R;
+import com.example.minidouyin.RxBus;
 import com.example.minidouyin.core.recycler.adapter.CommPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -71,6 +72,32 @@ public class MainFragment extends BaseFragment{
         tabTitle.getTabAt(0).setText("杭州");
         tabTitle.getTabAt(1).setText("推荐");
         tabTitle.getTabAt(1).select();
+
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position == 1){
+                    //继续播放
+                    RxBus.getDefault().post(new PauseVideoEvent(true));
+                }
+                else
+                {
+                    RxBus.getDefault().post(new PauseVideoEvent(false));
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 

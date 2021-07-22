@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.minidouyin.BaseFragment;
 import com.example.minidouyin.R;
+import com.example.minidouyin.RxBus;
 import com.example.minidouyin.core.recycler.adapter.VideoAdapter;
 
 import java.util.ArrayList;
+
+import rx.functions.Action1;
 
 public class RecommendFragment extends BaseFragment {
 
@@ -45,6 +48,16 @@ public class RecommendFragment extends BaseFragment {
 
         loadData();
 
+
+        //监听播放或暂停事件
+        RxBus.getDefault().toObservable(PauseVideoEvent.class)
+        .subscribe((Action1<PauseVideoEvent>) event -> {
+            if (event.isPlayOrPause()) {
+                videoView.start();
+            } else {
+                videoView.pause();
+            }
+        });
     }
 
     private void loadData(){
@@ -54,6 +67,7 @@ public class RecommendFragment extends BaseFragment {
         adapter.notifyDataSetChanged();
     }
 
+
     //分割线的类
     class MyDecoration extends RecyclerView.ItemDecoration{
         @Override
@@ -62,6 +76,12 @@ public class RecommendFragment extends BaseFragment {
             int gap = getResources().getDimensionPixelSize(R.dimen.fab_margin);//5dp
             outRect.set(gap,gap,gap,gap);
         }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        videoView.start();
     }
 
     @Override
@@ -76,5 +96,6 @@ public class RecommendFragment extends BaseFragment {
 
         videoView.stopPlayback();
     }
+
 
 }

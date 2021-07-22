@@ -6,14 +6,12 @@ import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,8 +20,9 @@ import com.gyf.immersionbar.ImmersionBar;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+import static com.example.minidouyin.Util.SYSTEM_TYPE_VIDEO;
+import static com.example.minidouyin.Util.getOutputMediaFile;
 
 public class CustomCameraActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
@@ -32,13 +31,12 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
     private Camera mCamera;
     private MediaRecorder mMediaRecorder;
     private SurfaceHolder mHolder;
-    private ImageView mImageView;
-    private VideoView mVideoView;
+
     private Button mRecordButton;
     private Button mConfirmButton;
     private boolean isRecording = false;
 
-    private String mp4Path = "";
+    private File video_file;
 
     public static void startUI(Context context) {
         Intent intent = new Intent(context, CustomCameraActivity.class);
@@ -52,17 +50,8 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_camera);
         mSurfaceView = findViewById(R.id.surfaceview);
-        mImageView = findViewById(R.id.iv_img);
-        mVideoView = findViewById(R.id.videoview);
         mRecordButton = findViewById(R.id.bt_record);
         mConfirmButton = findViewById(R.id.bt_confirm);
-        mConfirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-
-            }
-        });
 
         mHolder = mSurfaceView.getHolder();
         initCamera();
@@ -130,6 +119,9 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
         mCamera = null;
     }
 
+    public void cancel(View view){
+        finish();
+    }
 
 
     public void record(View view) {
@@ -156,15 +148,13 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
             mMediaRecorder.release();
             mMediaRecorder = null;
             mCamera.lock();
-            // todo 3.5 播放录制的视频
-            mVideoView.setVisibility(View.VISIBLE);
-            mImageView.setVisibility(View.GONE);
-            mVideoView.setVideoPath(mp4Path);
-            mVideoView.start();
 
-            Intent i = new Intent(this, UploadActivity.class);
-            i.putExtra("path", mp4Path);
-            startActivityForResult(i,REQUEST_UPLOAD);
+
+            Intent intent = new Intent(this, UploadActivity.class);
+            intent.putExtra("videoUri", Uri.fromFile(video_file).toString());
+            this.finish();
+            startActivity(intent);
+            startActivityForResult(intent, REQUEST_UPLOAD);
 
 
         }
@@ -186,8 +176,8 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
         mMediaRecorder.setProfile(CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH));
 
         // Step 4: Set output file
-        mp4Path = getOutputMediaPath();
-        mMediaRecorder.setOutputFile(mp4Path);
+        video_file = getOutputMediaFile(SYSTEM_TYPE_VIDEO);
+        mMediaRecorder.setOutputFile(video_file.toString());
 
         // Step 5: Set the preview output
         mMediaRecorder.setPreviewDisplay(mHolder.getSurface());
@@ -209,15 +199,6 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
 
     }
 
-    private String getOutputMediaPath() {
-        File mediaStorageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File mediaFile = new File(mediaStorageDir, "IMG_" + timeStamp + ".mp4");
-        if (!mediaFile.exists()) {
-            mediaFile.getParentFile().mkdirs();
-        }
-        return mediaFile.getAbsolutePath();
-    }
 
     /**
      * 去除状态栏
@@ -229,8 +210,8 @@ public class CustomCameraActivity extends AppCompatActivity implements SurfaceHo
     /**
      *
      */
-    protected void hideActionBar(){
-        if (getSupportActionBar() != null){
+    protected void hideActionBar() {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
     }

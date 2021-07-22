@@ -10,6 +10,9 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.example.minidouyin.data.Constants;
 import com.example.minidouyin.newtwork.model.UploadResponse;
 
 import java.io.File;
@@ -97,7 +100,7 @@ public class UploadActivity extends BaseActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        retrofit.create(IApi.class).submitMessage(studentId, "cat", coverImage, video).enqueue(new Callback<UploadResponse>() {
+        retrofit.create(IApi.class).submitMessage(Constants.stduentID, Constants.studentName,"", coverImage, video).enqueue(new Callback<UploadResponse>() {
             @Override
             public void onResponse(Call<UploadResponse> call, Response<UploadResponse> response) {
                 runOnUiThread(new Runnable() {

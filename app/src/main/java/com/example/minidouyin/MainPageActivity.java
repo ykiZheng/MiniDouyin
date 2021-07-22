@@ -17,8 +17,7 @@ public class MainPageActivity extends BaseActivity {
 
     private CommPagerAdapter pageAdapter;
     private ArrayList<Fragment> fragments = new ArrayList<>();
-    public String studentName = "hahaha";
-    public String stduentID = "12345";
+
 
     @Override
     protected int setLayoutId() {

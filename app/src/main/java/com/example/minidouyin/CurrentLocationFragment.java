@@ -1,6 +1,7 @@
 package com.example.minidouyin;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.minidouyin.API.Message;
 import com.example.minidouyin.API.MessageListResponse;
+import com.example.minidouyin.API.UserMessage;
+import com.example.minidouyin.R;
+import com.example.minidouyin.VideoActivity;
 import com.example.minidouyin.base.BaseFragment;
 import com.example.minidouyin.Recommend.FeedAdapter;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -33,8 +37,6 @@ public class CurrentLocationFragment extends BaseFragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private FeedAdapter adapter = new FeedAdapter();
 
-    public String Username;
-    public String ID;
     public boolean WhetherRecommend;
 
     @Override
@@ -55,9 +57,10 @@ public class CurrentLocationFragment extends BaseFragment {
             @Override
             public void onItemCLick(int position, Message message) {
                 Intent intent = new Intent(getActivity(), VideoActivity.class);
-//                Bundle bundle = new Bundle();
-//                UserMessage user = new UserMessage(message);
-//                intent.putExtra("User", user);
+                Bundle bundle = new Bundle();
+                UserMessage user = new UserMessage(message);
+                bundle.putSerializable("User", user);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
             @Override
@@ -70,12 +73,9 @@ public class CurrentLocationFragment extends BaseFragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(adapter);
 
-        Intent intent = getActivity().getIntent();
-        WhetherRecommend = intent.getBooleanExtra("WhetherRecommend", true);
-        Username = intent.getStringExtra("Username");
-        ID = intent.getStringExtra("ID");
+        String ID = getArguments().getString("ID");
 
-        if (WhetherRecommend == true) {
+        if (ID == null) {
             getData(null);
         } else getData(ID);
     }

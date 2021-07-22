@@ -10,9 +10,9 @@
 
     <ImageView
         android:id="@+id/gif_login"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginBottom="70dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="20dp"
         android:layout_gravity="center" />
 
     <LinearLayout
@@ -26,6 +26,9 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="410dp"
+            android:background="@drawable/button"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:text="登录" />
 
         <Button
@@ -34,9 +37,19 @@
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
+            android:backgroundTint="@drawable/button"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:text="快速开始" />
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="200dp"
+        android:src="@drawable/dou"/>
 
     <ImageView
         android:id="@+id/cloth"
@@ -52,5 +65,6 @@
         android:layout_gravity="center"
         android:alpha="1"
         android:background="#232A30"/>
+
 
 </FrameLayout>

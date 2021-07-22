@@ -2,6 +2,7 @@ package com.example.minidouyin;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -34,7 +35,7 @@ public class MainFragment extends BaseFragment{
     @BindView(R.id.ig_record)
     ImageView ig_record;
 
-    private String[] titles = new String[]{"杭州","推荐"};
+    private String[] titles = new String[]{"浏览","推荐"};
 
     // TODO: Rename and change types of parameters
     private ArrayList<Fragment> fragments = new ArrayList<>();
@@ -60,17 +61,20 @@ public class MainFragment extends BaseFragment{
     }
 
     private void setFragments(){
+
         currentLocationFragment = new CurrentLocationFragment();
         recommendFragment = new RecommendFragment();
 
         fragments.add(currentLocationFragment);
         fragments.add(recommendFragment);
 
-
+        Bundle bundle = new Bundle();
+        bundle.putString("ID", null);
+        currentLocationFragment.setArguments(bundle);
         pagerAdapter = new CommPagerAdapter(getChildFragmentManager(), fragments, new String[]{"杭州", "推荐"});
         viewPager.setAdapter(pagerAdapter);
         tabTitle.setupWithViewPager(viewPager);
-        tabTitle.getTabAt(0).setText("杭州");
+        tabTitle.getTabAt(0).setText("浏览");
         tabTitle.getTabAt(1).setText("推荐");
         tabTitle.getTabAt(1).select();
 

@@ -20,8 +20,10 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 
 public class MainActivity extends AppCompatActivity {
 
+    public static PersonalHomeFragment personalHome;
+
     public static final int LOGIN_REQUEST_CODE = 6342;
-    public static final int LOGIN_ANONIMAL_CODE= 6343;
+    public static final int LOGIN_ANONIMAL_CODE = 6343;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         quickstart.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, MainPageActivity.class);
-            intent.putExtra("username", "Anonymous");
-            intent.putExtra("id", "000");
+
             startActivity(intent);
         });
 
@@ -68,15 +69,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if(requestCode == LOGIN_REQUEST_CODE && resultCode == RESULT_OK && data != null){
-//            Constants.stduentID = data.getStringExtra("user_id");
-//            Constants.studentName = data.getStringExtra("user_name");
-//            Log.i("Constant",Constants.stduentID);
-//            Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 }

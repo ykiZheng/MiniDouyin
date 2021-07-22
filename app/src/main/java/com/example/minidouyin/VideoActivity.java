@@ -10,12 +10,16 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompatExtras;
 
 import com.bumptech.glide.Glide;
 import com.example.minidouyin.API.UserMessage;
+import com.example.minidouyin.Personal.MyvideoFragment;
 
 import java.net.URL;
 
@@ -43,14 +47,25 @@ public class VideoActivity extends AppCompatActivity {
         final ImageButton like_full = findViewById(R.id.like_full);
 
         final VideoView video = findViewById(R.id.video);
+        final TextView text1 = findViewById(R.id.video_id1);
+        final TextView text2 = findViewById(R.id.video_id2);
+        final TextView text3 = findViewById(R.id.video_id3);
+        final TextView text4 = findViewById(R.id.video_id4);
+        final TextView text5 = findViewById(R.id.video_id5);
 
         UserMessage user;
-//        Intent intent = getIntent();
-//        user = (UserMessage)intent.getSerializableExtra("User");
-//        Uri addr = Uri.parse(user.message.video_url);
-//        video.setVideoURI(addr);
-//        video.setMediaController(new MediaController(this));
-//        video.start();
+        Intent intent = getIntent();
+        user = (UserMessage)intent.getSerializableExtra("User");
+        Uri addr = Uri.parse(user.video_url);
+        video.setVideoURI(addr);
+        video.setMediaController(new MediaController(this));
+        video.start();
+
+        text1.setText("用户名:" + user.user_name);
+        text2.setText("用户ID:" + user.studentId);
+        text3.setText("备注信息:" + user.extra_value);
+        text4.setText("创建时间:" + user.updatedAt);
+        text5.setText("上传时间:" + user.createdAt);
 
         // 收藏标志：star
         star_full.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +84,8 @@ public class VideoActivity extends AppCompatActivity {
                     star_dis.playTogether(star_disx, star_disy, star_disa, star_ful);
                     star_dis.setDuration(1000);
                     star_dis.start();
+
+                    MainActivity.personalHome.add_like(user.getmessage());
                 }
                 else{
                     star_empty.setAlpha((float)0.3);

@@ -35,8 +35,6 @@ public class LoginActivity extends AppCompatActivity {
                 Constants.stduentID = pass;
 
                 Intent intent = new Intent(LoginActivity.this, MainPageActivity.class);
-                intent.putExtra("user_name", user);
-                intent.putExtra("user_id", pass);
                 startActivity(intent);
             }
         });

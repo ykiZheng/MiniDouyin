@@ -1,8 +1,8 @@
 package com.example.minidouyin;
 
 import android.content.Intent;
+import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -14,15 +14,15 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 
-import static com.example.minidouyin.CustomCameraActivity.REQUEST_UPLOAD;
-import static com.example.minidouyin.MainActivity.LOGIN_ANONIMAL_CODE;
-
 public class MainPageActivity extends BaseActivity {
     @BindView(R.id.vg)
     ViewPager viewPager;
 
     private CommPagerAdapter pageAdapter;
     private ArrayList<Fragment> fragments = new ArrayList<>();
+
+    private String user_name = Constants.studentName;
+    private String user_ID = Constants.stduentID;
 
 
     @Override
@@ -33,32 +33,14 @@ public class MainPageActivity extends BaseActivity {
     @Override
     protected void init() {
 
-        fragments.add(new MainFragment());
-        fragments.add(new PersonalHomeFragment());
-        pageAdapter = new CommPagerAdapter(getSupportFragmentManager(), fragments,new String[]{"",""});
+        MainActivity.personalHome = new PersonalHomeFragment();
+        MainActivity.personalHome.setuser(user_name, user_ID);
+        MainFragment mainfragment = new MainFragment();
+
+        fragments.add(mainfragment);
+        fragments.add(MainActivity.personalHome);
+        pageAdapter = new CommPagerAdapter(getSupportFragmentManager(), fragments, new String[]{"", ""});
         viewPager.setAdapter(pageAdapter);
     }
-
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode == REQUEST_UPLOAD){
-//            ;String returnPath = data.getStringExtra("path");
-//            if(returnPath != null){
-//                fragments.remove(1);
-//                fragments.remove(0);
-//                init();
-//
-//            }
-//        }
-//        else if(requestCode == LOGIN_ANONIMAL_CODE){
-//            Constants.studentName = null;
-//            Constants.stduentID = null;
-//            fragments.remove(1);
-//            fragments.remove(0);
-//            init();
-//        }
-//    }
 
 }

@@ -66,14 +66,14 @@ public class RecommendFragment extends BaseFragment {
 
 
         //监听播放或暂停事件
-        RxBus.getDefault().toObservable(PauseVideoEvent.class)
-                .subscribe((Action1<PauseVideoEvent>) event -> {
-                    if (event.isPlayOrPause()) {
-                        videoView.start();
-                    } else {
-                        videoView.pause();
-                    }
-                });
+//        RxBus.getDefault().toObservable(PauseVideoEvent.class)
+//                .subscribe((Action1<PauseVideoEvent>) event -> {
+//                    if (event.isPlayOrPause()) {
+//                        videoView.start();
+//                    } else {
+//                        videoView.pause();
+//                    }
+//                });
     }
 
 
